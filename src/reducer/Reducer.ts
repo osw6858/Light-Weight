@@ -1,32 +1,45 @@
-import { AddTodoAction,ADD_TODO } from '../action/action'
+import {ActionType} from '../action/action'
 
-//할일은 추가할떄 힐일객체의 형식을 정의
-//todolist 를 배열에 넣어서 관리 할건데 배열안에 들어갈 값 
-export type Todo = {
-  id: number;
-  text: string;
-  done: boolean;
-};
-
-//TodosState는 Todo형식을 가진 객체만 들어올 수 있는 배열이다
-//전체 배열 -> 그 배열 안에는 Todo 타입의 인자만 들어 올 수 있다
-export type TodosState = Todo[];
-
-// 초기 상태 선언
-const initialState: TodosState = [];
-
-
-const TodoReducer = (state:TodosState = initialState, action:AddTodoAction ):TodosState => {
-  switch (action.type) {
-    case ADD_TODO :
-        return [...state, {
-            id:action.payload.id,
-            text:action.payload.text,
-            done:false
-        }]
-        default:
-            return state;
-    }
+//하나의 운동안에 있는 하나의 세트에 들어가는 정보
+export type Set = {
+  setId:number,
+  weight:number,
+  reps:number
 }
 
-export default TodoReducer;
+//하나의 운동에 들어가는 정보
+export type Exercise = {
+  exerciseId:number,
+  exerciseName:string,
+  set: Set[]
+}
+
+export type ExerciseState = Exercise[];
+
+const initialState:Exercise[] = [];
+
+const ExerciseReducer = (state:ExerciseState = initialState, action:ActionType) => {
+      switch(action.type) {
+        case  "ADD_EXCERCISE":
+          return [...state, {
+            exerciseId:action.payload.exerciseId,
+            exerciseName:action.payload.exerciseName
+          }]
+        case "REMOVE_EXERCISE":
+           return [...state].filter((exercise) => exercise.exerciseId !== action.payload.exerciseId)
+
+        case "ADD_SET" :
+           return [...state].map(exercise => [...exercise.set,{
+            setId: action.payload.setId,
+            weight: action.payload.weight,
+            reps: action.payload.reps
+           }] )
+        case "REMOVE_SET":
+           return [...state].map(exercise =>  [...exercise.set].filter((set)=> set.setId !== action.payload.setId))
+        
+        default:state
+      }
+        
+}
+
+export default ExerciseReducer;
