@@ -1,4 +1,4 @@
-const ADD_EXERCISE = "ADD_EXCERCISE" as const
+const ADD_EXERCISE = "ADD_EXERCISE" as const
 const REMOVE_EXERCISE = "REMOVE_EXERCISE" as const
 const ADD_SET = "ADD_SET" as const
 const REMOVE_SET = "REMOVE_SET" as const

@@ -20,7 +20,7 @@ const initialState:Exercise[] = [];
 
 const ExerciseReducer = (state:ExerciseState = initialState, action:ActionType) => {
       switch(action.type) {
-        case  "ADD_EXCERCISE":
+        case  "ADD_EXERCISE":
           return [...state, {
             exerciseId:action.payload.exerciseId,
             exerciseName:action.payload.exerciseName
@@ -37,7 +37,7 @@ const ExerciseReducer = (state:ExerciseState = initialState, action:ActionType) 
         case "REMOVE_SET":
            return [...state].map(exercise =>  [...exercise.set].filter((set)=> set.setId !== action.payload.setId))
         
-        default:state
+        default: return state
       }
         
 }
