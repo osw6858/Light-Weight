@@ -53,13 +53,13 @@ const ExerciseReducer = (
           };
         }
         /*
-            틀린 코드 
+            틀린 코드 1
              return [...state][action.payload.exerciseId].set.push({
         setId: action.payload.setId,
         weight: action.payload.weight,
         reps: action.payload.reps
        })
-           }] ) */
+        */
         return exercise;
       });
     case "REMOVE_SET":
@@ -74,7 +74,9 @@ const ExerciseReducer = (
         }
         return exercise;
       });
-    /* 틀린코드
+    case "RESTORE_DATA":
+      return action.payload;
+    /* 틀린코드 2
          return [...state].map(exercise =>  [...exercise.set].filter((set)=> set.setId !== action.payload.setId)) */
     default:
       return state;
@@ -84,7 +86,8 @@ const ExerciseReducer = (
 export default ExerciseReducer;
 
 /*
-오류 & 잘못 이해한 부분
- 1. 운동 아이드를 비교하고 일치하는 운동에 넣어야 하는데 비교 안하고 그냥 map돌림
- 2. 스프레드 연산자 배열, 객체 추가 수정 잘못 이해하고 있던 부분 수정
+ 코드1 틀린 이유:  push메소드는 변경된 배열의 길이(length)를 반환하기 때문!
+   concat을 써도 새로운 변수 할당을 안하면 기존 state 배열은 변화가 없기 때문
+
+ 2.
 */

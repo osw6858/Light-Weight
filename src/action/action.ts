@@ -1,7 +1,10 @@
+import { ExerciseState } from "../reducer/Reducer";
+
 const ADD_EXERCISE = "ADD_EXERCISE" as const;
 const REMOVE_EXERCISE = "REMOVE_EXERCISE" as const;
 const ADD_SET = "ADD_SET" as const;
 const REMOVE_SET = "REMOVE_SET" as const;
+const RESTORE_DATA = "RESTORE_DATA" as const;
 
 let exerciseId = 0;
 let setId = 0;
@@ -39,10 +42,16 @@ export const removeSet = (exerciseId: number, setId: number) => ({
   },
 });
 
+export const restoreData = (parsedData: ExerciseState) => ({
+  type: RESTORE_DATA,
+  payload: parsedData,
+});
+
 export type ActionType =
   | ReturnType<typeof addExercise>
   | ReturnType<typeof removeExercise>
   | ReturnType<typeof addSet>
-  | ReturnType<typeof removeSet>;
+  | ReturnType<typeof removeSet>
+  | ReturnType<typeof restoreData>;
 
 //각 함수에 리턴값 타입을 추론해서 쓰기 위해
