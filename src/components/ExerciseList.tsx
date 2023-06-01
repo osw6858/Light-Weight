@@ -22,14 +22,18 @@ const ExerciseList = ({
     <div>
       {exercise.map((e: Exercise) => (
         <div key={e.exerciseId}>
-          <div>
-            <span>{e.exerciseName}</span>
-            <button onClick={() => handleRemoveExercise(e.exerciseId)}>
-              삭제
+          <div className=" mx-3">
+            <span className=" text-2xl font-bold">{e.exerciseName}</span>
+            <button
+              className="m-4 rounded-md bg-red-500 text-white hover:bg-red-400 border p-1"
+              onClick={() => handleRemoveExercise(e.exerciseId)}
+            >
+              운동삭제
             </button>
           </div>
           <div>
             <input
+              className="m-3 w-1/3 h-8 rounded-sm text-center"
               placeholder="무게입력"
               type="number"
               ref={
@@ -39,11 +43,17 @@ const ExerciseList = ({
               }
             />
             <input
+              className="m-3 w-1/3 h-8 rounded-sm text-center"
               placeholder="횟수 입력"
               type="number"
               ref={(el) => (inputReps.current[e.exerciseId] = el)}
             />
-            <button onClick={() => handleAddSet(e.exerciseId)}>세트추가</button>
+            <button
+              className="m-3 p-2 rounded-md bg-blue-500 text-white hover:bg-blue-400 border"
+              onClick={() => handleAddSet(e.exerciseId)}
+            >
+              세트추가
+            </button>
             <AddSet e={e} handleRemoveSet={handleRemoveSet} />
           </div>
         </div>

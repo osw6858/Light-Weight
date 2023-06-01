@@ -11,6 +11,7 @@ import {
 import { ExerciseState } from "../reducer/Reducer";
 import AddExercise from "../components/AddExercise";
 import ExerciseList from "../components/ExerciseList";
+import Header from "../components/Header";
 
 const ExerciseIndex = () => {
   const [newExercise, setNewExercise] = useState("");
@@ -82,22 +83,30 @@ const ExerciseIndex = () => {
   }, []);
 
   return (
-    <div>
-      <AddExercise
-        newExercise={newExercise}
-        handleNewExercise={handleNewExercise}
-        handleAddExercise={handleAddExercise}
-      />
-      <ExerciseList
-        exercise={exercise}
-        handleRemoveExercise={handleRemoveExercise}
-        inputWeight={inputWeight}
-        inputReps={inputReps}
-        handleAddSet={handleAddSet}
-        handleRemoveSet={handleRemoveSet}
-      />
-      <div>
-        <button onClick={handleSaveData}>임시저장</button>
+    <div className=" bg-slate-200 h-screen">
+      <Header />
+      <div className="flex flex-col justify-center items-center mt-8">
+        <AddExercise
+          newExercise={newExercise}
+          handleNewExercise={handleNewExercise}
+          handleAddExercise={handleAddExercise}
+        />
+        <ExerciseList
+          exercise={exercise}
+          handleRemoveExercise={handleRemoveExercise}
+          inputWeight={inputWeight}
+          inputReps={inputReps}
+          handleAddSet={handleAddSet}
+          handleRemoveSet={handleRemoveSet}
+        />
+        <div className="m-3">
+          <button
+            className="m-3 p-2 rounded-md bg-blue-500 text-white hover:bg-blue-400 border"
+            onClick={handleSaveData}
+          >
+            임시저장
+          </button>
+        </div>
       </div>
     </div>
   );
