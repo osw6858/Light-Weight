@@ -14,15 +14,20 @@ import ExerciseList from "../components/ExerciseList";
 
 const ExerciseIndex = () => {
   const [newExercise, setNewExercise] = useState("");
+
   const inputWeight: React.MutableRefObject<any[]> = useRef([]); //이부분 공부 더 해야함
   const inputReps: React.MutableRefObject<any[]> = useRef([]);
+
   const exercise = useSelector((state: RootState) => state.ExerciseReducer);
   const dispatch = useDispatch();
+
+  /**사용자가 입력한 운동이름을 가져오는 함수 */
   const handleNewExercise = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text: string = e.target.value;
     setNewExercise(text);
   };
 
+  /** 운동을 추가하는 함수 */
   const handleAddExercise = () => {
     if (newExercise.trim() !== "") {
       dispatch(addExercise(newExercise));
@@ -32,6 +37,7 @@ const ExerciseIndex = () => {
     setNewExercise("");
   };
 
+  /**입력한 운동의 세트를 추가하는 함수, 매개변수:운동ID*/
   const handleAddSet = (exerciseId: number) => {
     const weight = parseInt(
       inputWeight.current[exerciseId].value as string,
@@ -50,14 +56,17 @@ const ExerciseIndex = () => {
     }
   };
 
+  /**입력한 운동을 지우는 함수, 매개변수:운동ID */
   const handleRemoveExercise = (exerciseId: number) => {
     dispatch(removeExercise(exerciseId));
   };
 
+  /**입력한 운동의 세트를 지우는 함수, 매개변수:운동&세트ID */
   const handleRemoveSet = (exerciseId: number, setId: number) => {
     dispatch(removeSet(exerciseId, setId));
   };
 
+  /**기록을 로컬스토리지에 저장하는 함수 */
   const handleSaveData = () => {
     localStorage.setItem("exerciseData", JSON.stringify(exercise));
     alert("데이터가 임시 저장되었습니다.");
