@@ -1,5 +1,5 @@
 import { ExerciseState, Exercise } from "../reducer/Reducer";
-import AddSet from "./AddSet";
+import AddSet from "./SetList";
 
 type ExerciseItemProps = {
   exercise: ExerciseState;
