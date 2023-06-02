@@ -1,22 +1,44 @@
 import { Exercise } from "../reducer/Reducer";
-import { DeleteOutlined } from "@ant-design/icons";
+import { DeleteOutlined, CheckOutlined } from "@ant-design/icons";
+import React, { CSSProperties } from "react";
+
 type SetItem = {
   e: Exercise;
   handleRemoveSet: (exerciseId: number, setId: number) => void;
+  onToggle: (setId: number) => void;
 };
 
-const AddSet = ({ e, handleRemoveSet }: SetItem) => {
+const AddSet = ({ e, handleRemoveSet, onToggle }: SetItem) => {
   return (
     <div>
       {e.set.map((s, index) => (
         <div className=" flex items-center justify-around mt-3" key={s.setId}>
-          <span className=" text-sm sm:text-base md:text-lg p-1 font-bold">
+          <CheckOutlined onClick={() => onToggle(s.setId)} />
+          <span
+            className={
+              s.done
+                ? " text-sm sm:text-base md:text-lg p-1 font-bold line-through"
+                : "text-sm sm:text-base md:text-lg p-1 font-bold "
+            }
+          >
             {index + 1}세트
           </span>
-          <span className="text-sm sm:text-base md:text-lg p-1">
+          <span
+            className={
+              s.done
+                ? " text-sm sm:text-base md:text-lg p-1 font-bold line-through"
+                : "text-sm sm:text-base md:text-lg p-1  "
+            }
+          >
             {s.weight}kg
           </span>
-          <span className="text-sm sm:text-base md:text-lg p-1">
+          <span
+            className={
+              s.done
+                ? " text-sm sm:text-base md:text-lg p-1 font-bold line-through"
+                : "text-sm sm:text-base md:text-lg p-1  "
+            }
+          >
             {s.reps}회
           </span>
           <DeleteOutlined

@@ -10,6 +10,7 @@ type ExerciseItemProps = {
   handleRemoveExercise: (exerciseId: number) => void;
   handleAddSet: (exerciseId: number) => void;
   handleRemoveSet: (exerciseId: number, setId: number) => void;
+  onToggle: (setId: number) => void;
   inputWeight: React.MutableRefObject<any[]>;
   inputReps: React.MutableRefObject<any[]>;
 };
@@ -21,6 +22,7 @@ const ExerciseList = ({
   inputReps,
   handleAddSet,
   handleRemoveSet,
+  onToggle,
 }: ExerciseItemProps) => {
   return (
     <div className="mt-10 flex flex-col">
@@ -45,7 +47,7 @@ const ExerciseList = ({
               <div className=" md:flex justify-center">
                 <input
                   className="mx-2 px-4 py-2 border-b border-black text-gray-600 bg-white focus:outline-none focus:shadow-outline max-w-sm md:max-w-full"
-                  placeholder="무게 입력"
+                  placeholder="목표 무게"
                   type="number"
                   ref={
                     (el) =>
@@ -55,7 +57,7 @@ const ExerciseList = ({
                 />
                 <input
                   className="mx-2 px-4 py-2 border-b border-black text-gray-600 bg-white focus:outline-none focus:shadow-outline max-w-sm md:max-w-full"
-                  placeholder="횟수 입력"
+                  placeholder="목표 횟수"
                   type="number"
                   ref={(el) => (inputReps.current[e.exerciseId] = el)}
                 />
@@ -64,11 +66,15 @@ const ExerciseList = ({
                   className=" bg-blue-500 rounded-lg ml-1 md:ml-5 mt-5"
                   onClick={() => handleAddSet(e.exerciseId)}
                 >
-                  세트 완료
+                  도전
                 </Button>
               </div>
 
-              <AddSet e={e} handleRemoveSet={handleRemoveSet} />
+              <AddSet
+                e={e}
+                handleRemoveSet={handleRemoveSet}
+                onToggle={onToggle}
+              />
             </div>
           </Panel>
         </Collapse>

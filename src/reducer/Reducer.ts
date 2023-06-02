@@ -5,6 +5,7 @@ export type Set = {
   setId: number;
   weight: number;
   reps: number;
+  done: boolean;
 };
 
 //하나의 운동에 들어가는 정보
@@ -25,12 +26,12 @@ const ExerciseReducer = (
   switch (action.type) {
     case "ADD_EXERCISE":
       return [
+        ...state,
         {
           exerciseId: action.payload.exerciseId,
           exerciseName: action.payload.exerciseName,
           set: [],
         },
-        ...state,
       ];
     case "REMOVE_EXERCISE":
       return [...state].filter(
@@ -48,6 +49,7 @@ const ExerciseReducer = (
                 setId: action.payload.setId,
                 weight: action.payload.weight,
                 reps: action.payload.reps,
+                done: false,
               },
             ],
           };
@@ -78,6 +80,16 @@ const ExerciseReducer = (
       return action.payload;
     /* 틀린코드 2
          return [...state].map(exercise =>  [...exercise.set].filter((set)=> set.setId !== action.payload.setId)) */
+
+    case "TOGGLE_TODO":
+      return state.map((exercise) => {
+        return {
+          ...exercise,
+          set: exercise.set.map((s) =>
+            s.setId === action.payload ? { ...s, done: !s.done } : s
+          ),
+        };
+      });
     default:
       return state;
   }

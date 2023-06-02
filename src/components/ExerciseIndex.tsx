@@ -7,6 +7,7 @@ import {
   removeExercise,
   removeSet,
   restoreData,
+  toggleTodo,
 } from "../action/action";
 import { ExerciseState } from "../reducer/Reducer";
 import AddExercise from "../components/AddExercise";
@@ -70,7 +71,11 @@ const ExerciseIndex = () => {
   /**기록을 로컬스토리지에 저장하는 함수 */
   const handleSaveData = () => {
     localStorage.setItem("exerciseData", JSON.stringify(exercise));
-    alert("데이터가 임시 저장되었습니다.");
+    alert("데이터가 저장되었습니다.");
+  };
+
+  const onToggle = (setId: number) => {
+    dispatch(toggleTodo(setId));
   };
 
   useEffect(() => {
@@ -101,13 +106,14 @@ const ExerciseIndex = () => {
           inputReps={inputReps}
           handleAddSet={handleAddSet}
           handleRemoveSet={handleRemoveSet}
+          onToggle={onToggle}
         />
         <div className="m-3 flex justify-end">
           <button
             className="m-3 p-2 rounded-md bg-blue-500 text-white hover:bg-blue-400 border"
             onClick={handleSaveData}
           >
-            임시저장
+            저장
           </button>
         </div>
       </div>

@@ -5,6 +5,7 @@ const REMOVE_EXERCISE = "REMOVE_EXERCISE" as const;
 const ADD_SET = "ADD_SET" as const;
 const REMOVE_SET = "REMOVE_SET" as const;
 const RESTORE_DATA = "RESTORE_DATA" as const;
+const TOGGLE_TODO = "TOGGLE_TODO" as const;
 
 let exerciseId = 0;
 let setId = 0;
@@ -47,11 +48,17 @@ export const restoreData = (parsedData: ExerciseState) => ({
   payload: parsedData,
 });
 
+export const toggleTodo = (setId: number) => ({
+  type: TOGGLE_TODO,
+  payload: setId,
+});
+
 export type ActionType =
   | ReturnType<typeof addExercise>
   | ReturnType<typeof removeExercise>
   | ReturnType<typeof addSet>
   | ReturnType<typeof removeSet>
-  | ReturnType<typeof restoreData>;
+  | ReturnType<typeof restoreData>
+  | ReturnType<typeof toggleTodo>;
 
 //각 함수에 리턴값 타입을 추론해서 쓰기 위해
