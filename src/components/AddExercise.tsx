@@ -1,3 +1,5 @@
+import { Input } from "antd";
+
 type ExerciseInputProps = {
   newExercise: string;
   handleNewExercise: (e: React.ChangeEvent<HTMLInputElement>) => void;
@@ -9,22 +11,19 @@ const AddExercise = ({
   handleNewExercise,
   handleAddExercise,
 }: ExerciseInputProps) => {
+  const { Search } = Input;
   return (
-    <div className="w-3/4">
-      <div className="w-2/4 mx-auto">
-        <input
-          className=" w-3/4 h-11 rounded-sm text-center"
-          value={newExercise}
-          onChange={(e) => handleNewExercise(e)}
-          placeholder="운동을 입력하세요"
-        ></input>
-        <button
-          className="m-4 p-3 rounded-md bg-blue-500 text-white hover:bg-blue-400 border"
-          onClick={handleAddExercise}
-        >
-          운동추가
-        </button>
-      </div>
+    <div className="">
+      <Search
+        className=" bg-blue-500 rounded-lg"
+        placeholder="운동을 입력해 주세요"
+        allowClear
+        enterButton="추가"
+        size="large"
+        value={newExercise}
+        onChange={(e) => handleNewExercise(e)}
+        onSearch={handleAddExercise}
+      />
     </div>
   );
 };

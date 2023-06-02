@@ -83,9 +83,12 @@ const ExerciseIndex = () => {
   }, []);
 
   return (
-    <div className=" bg-slate-200 h-screen">
+    <div className=" h-screen">
       <Header />
-      <div className="flex flex-col justify-center items-center mt-8">
+      <div className="border border-black text-center">
+        날씨 타임워치 들어갈 곳
+      </div>
+      <div className="flex flex-col max-w-screen-sm mx-auto mt-8">
         <AddExercise
           newExercise={newExercise}
           handleNewExercise={handleNewExercise}
@@ -99,7 +102,7 @@ const ExerciseIndex = () => {
           handleAddSet={handleAddSet}
           handleRemoveSet={handleRemoveSet}
         />
-        <div className="m-3">
+        <div className="m-3 flex justify-end">
           <button
             className="m-3 p-2 rounded-md bg-blue-500 text-white hover:bg-blue-400 border"
             onClick={handleSaveData}
