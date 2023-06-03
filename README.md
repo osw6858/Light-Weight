@@ -14,7 +14,7 @@ Light-Weight는 운동계획을 짜고 기록관리를 도와주는 웹 어플�
 - ![React](https://img.shields.io/badge/-React-61DAFB?style=flat&logo=React&logoColor=white): 사용자 인터페이스를 구축하기 위해 React 라이브러리를 사용하였습니다.
 - ![TypeScript](https://img.shields.io/badge/-TypeScript-3178C6?style=flat&logo=TypeScript&logoColor=white): 정적 타입을 사용하여 코드의 가독성과 유지보수성을 향상시켰습니다.
 - ![Redux](https://img.shields.io/badge/-Redux-764ABC?style=flat&logo=Redux&logoColor=white): 상태 관리를 위해 Redux 라이브러리를 사용하였습니다.
-- ![HTML](https://img.shields.io/badge/-HTML-E34F26?style=flat&logo=HTML5&logoColor=white)/![CSS](https://img.shields.io/badge/-CSS-1572B6?style=flat&logo=CSS3&logoColor=white): 웹 애플리케이션의 구조와 스타일링을 위해 HTML과 CSS를 사용하였습니다.
+- ![HTML](https://img.shields.io/badge/-HTML-E34F26?style=flat&logo=HTML5&logoColor=white)/![Tailwind CSS](https://img.shields.io/badge/-Tailwind%20CSS-38B2AC?style=flat&logo=Tailwind%20CSS&logoColor=white): 웹 애플리케이션의 구조와 스타일링을 위해 HTML과 TailwindCSS를 사용하였습니다.
 - ![Ant Design](https://img.shields.io/badge/-Ant%20Design-0170FE?style=flat&logo=Ant%20Design&logoColor=white): UI 컴포넌트 라이브러리로써 Ant Design을 사용하여 사용자 인터페이스를 디자인하였습니다.
 - ![Vite](https://img.shields.io/badge/-Vite-646CFF?style=flat&logo=Vite&logoColor=white): 빠른 개발 환경을 위해 Vite를 사용하였습니다.
 - ![Jest](https://img.shields.io/badge/-Jest-C21325?style=flat&logo=Jest&logoColor=white): 테스트 라이브러리로써 Jest를 사용하여 유닛 테스트를 작성하였습니다.
