@@ -36,7 +36,7 @@ const ExerciseList = () => {
           size="large"
           expandIconPosition="end"
         >
-          <Panel header={e.exerciseName} key="1">
+          <Panel header={e.exerciseName} key="0">
             <div key={e.exerciseId}>
               <div className="flex items-center justify-end mb-3">
                 <Button

@@ -20,6 +20,10 @@ export const Functions = () => {
   const exercise = useSelector((state: RootState) => state.ExerciseReducer);
   const dispatch = useDispatch();
 
+  const [minutes, setMinutes] = useState(0);
+  const [seconds, setSeconds] = useState(0);
+  const [isRunning, setIsRunning] = useState(false);
+
   /**사용자가 입력한 운동이름을 가져오는 함수 */
   const handleNewExercise = (e: React.ChangeEvent<HTMLInputElement>) => {
     const text: string = e.target.value;
@@ -93,6 +97,19 @@ export const Functions = () => {
     }
   }, []);
 
+  const handleStart = () => {
+    setIsRunning(true);
+  };
+
+  const handleStop = () => {
+    setIsRunning(false);
+  };
+
+  const handleReset = () => {
+    setMinutes(0);
+    setSeconds(0);
+  };
+
   return {
     exercise,
     handleAddExercise,
@@ -106,5 +123,13 @@ export const Functions = () => {
     inputReps,
     newExercise,
     setNewExercise,
+    handleStart,
+    handleStop,
+    handleReset,
+    minutes,
+    seconds,
+    isRunning,
+    setSeconds,
+    setMinutes,
   };
 };

@@ -2,6 +2,7 @@ import AddExercise from "../components/AddExercise";
 import ExerciseList from "../components/ExerciseList";
 import Header from "../components/Header";
 import { Functions } from "../helper/Functions";
+import Timer from "./Timer";
 
 const ExerciseIndex = () => {
   const { handleSaveData } = Functions();
@@ -9,6 +10,7 @@ const ExerciseIndex = () => {
   return (
     <div className=" h-screen">
       <Header />
+      <Timer />
       <div className="flex flex-col max-w-screen-sm mx-auto mt-8">
         <AddExercise />
         <ExerciseList />
