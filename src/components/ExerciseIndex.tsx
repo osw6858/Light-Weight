@@ -11,7 +11,7 @@ const ExerciseIndex = () => {
     <div className=" h-screen">
       <Header />
       <Timer />
-      <div className="flex flex-col max-w-screen-sm mx-auto mt-8">
+      <div className="flex flex-col max-w-screen-sm mx-auto mt-5">
         <AddExercise />
         <ExerciseList />
         <div className="m-3 flex justify-end">

@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import { InfoCircleOutlined } from "@ant-design/icons";
+import Inform from "./Inform";
 
 const Header = () => {
   const now = dayjs().format("YYYY-MM-DD");
@@ -15,7 +16,9 @@ const Header = () => {
         </h2>
       </div>
 
-      <InfoCircleOutlined className="text-xl sm:text-3xl md:text-4xl text-white p-8 mr-3" />
+      <div className="">
+        <Inform />
+      </div>
     </header>
   );
 };

@@ -14,12 +14,15 @@ import { ExerciseState } from "../reducer/Reducer";
 export const Functions = () => {
   const [newExercise, setNewExercise] = useState("");
 
+  //사용자가 입력한 무게, 횟수
   const inputWeight: React.MutableRefObject<any[]> = useRef([]); //이부분 공부 더 해야함
   const inputReps: React.MutableRefObject<any[]> = useRef([]);
 
+  //운동기록
   const exercise = useSelector((state: RootState) => state.ExerciseReducer);
   const dispatch = useDispatch();
 
+  //타이머
   const [minutes, setMinutes] = useState(0);
   const [seconds, setSeconds] = useState(0);
   const [isRunning, setIsRunning] = useState(false);
@@ -88,6 +91,7 @@ export const Functions = () => {
     dispatch(toggleComplete(setId));
   };
 
+  /**로컬스토리지에 저장된 기록이 있다면 불러오기 */
   useEffect(() => {
     const savedData = localStorage.getItem("exerciseData");
 
@@ -96,6 +100,24 @@ export const Functions = () => {
       dispatch(restoreData(parsedData));
     }
   }, []);
+
+  /**타이머 함수 */
+  useEffect(() => {
+    let interval: NodeJS.Timer;
+
+    if (isRunning) {
+      interval = setInterval(() => {
+        if (seconds < 59) {
+          setSeconds((prevSeconds: number) => prevSeconds + 1);
+        } else if (minutes < 59) {
+          setMinutes((prevMinutes) => prevMinutes + 1);
+          setSeconds(0);
+        }
+      }, 1000);
+    }
+
+    return () => clearInterval(interval);
+  }, [isRunning, seconds, minutes]);
 
   const handleStart = () => {
     setIsRunning(true);
@@ -129,7 +151,5 @@ export const Functions = () => {
     minutes,
     seconds,
     isRunning,
-    setSeconds,
-    setMinutes,
   };
 };

@@ -1,34 +1,8 @@
-import { useEffect } from "react";
 import { Functions } from "../helper/Functions";
 
 const Timer = () => {
-  const {
-    handleStart,
-    handleStop,
-    handleReset,
-    minutes,
-    seconds,
-    isRunning,
-    setSeconds,
-    setMinutes,
-  } = Functions();
-
-  useEffect(() => {
-    let interval: NodeJS.Timer;
-
-    if (isRunning) {
-      interval = setInterval(() => {
-        if (seconds < 59) {
-          setSeconds((prevSeconds: number) => prevSeconds + 1);
-        } else if (minutes < 59) {
-          setMinutes((prevMinutes) => prevMinutes + 1);
-          setSeconds(0);
-        }
-      }, 1000);
-    }
-
-    return () => clearInterval(interval);
-  }, [isRunning, seconds, minutes]);
+  const { handleStart, handleStop, handleReset, minutes, seconds, isRunning } =
+    Functions();
 
   return (
     <div className="flex items-center justify-center text-slate-500 rounded-full text-2xl md:text-5xl sm:text-5xl mt-4 mb-0">

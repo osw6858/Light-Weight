@@ -15,10 +15,10 @@ const AddExercise = () => {
 
   const { Search } = Input;
   return (
-    <div className="">
+    <div className="mx-3">
       <Search
         className=" bg-blue-500 rounded-lg"
-        placeholder="운동을 입력해 주세요"
+        placeholder="운동을 입력하세요"
         allowClear
         enterButton="추가"
         size="large"

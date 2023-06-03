@@ -27,7 +27,7 @@ const ExerciseList = () => {
   }: ExerciseItemProps = Functions();
 
   return (
-    <div className="mt-10 flex flex-col">
+    <div className="mt-5 flex flex-col">
       {exercise.map((e: Exercise, index) => (
         <Collapse
           key={index}
