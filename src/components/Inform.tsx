@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Button, Drawer } from "antd";
+import { Drawer } from "antd";
 import { InfoCircleOutlined } from "@ant-design/icons";
 const Inform: React.FC = () => {
   const [open, setOpen] = useState(false);
@@ -36,6 +36,14 @@ const Inform: React.FC = () => {
             왼쪽 체크버튼을 누르세요. 당신은 하루하루 성장하고 있습니다.
           </span>
           <br />
+          <br />
+          <p className=" ">
+            <p className="font-bold">사용한 기술스택</p>
+            React, TypeScript, Redux, Vite, Jest, Node.JS, TailwindCSS, antd
+            <br />
+          </p>
+          <br />
+          <p className=" font-bold"> 2023 Made by Woong</p>
         </div>
       </Drawer>
     </>

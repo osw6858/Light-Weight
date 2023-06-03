@@ -1,5 +1,4 @@
 import dayjs from "dayjs";
-import { InfoCircleOutlined } from "@ant-design/icons";
 import Inform from "./Inform";
 
 const Header = () => {
