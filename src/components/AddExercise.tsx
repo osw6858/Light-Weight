@@ -1,16 +1,18 @@
 import { Input } from "antd";
-
+import { Functions } from "../helper/Functions";
 type ExerciseInputProps = {
   newExercise: string;
   handleNewExercise: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleAddExercise: () => void;
 };
 
-const AddExercise = ({
-  newExercise,
-  handleNewExercise,
-  handleAddExercise,
-}: ExerciseInputProps) => {
+const AddExercise = () => {
+  const {
+    handleAddExercise,
+    handleNewExercise,
+    newExercise,
+  }: ExerciseInputProps = Functions();
+
   const { Search } = Input;
   return (
     <div className="">

@@ -45,11 +45,19 @@ export const Functions = () => {
     const reps = parseInt(inputReps.current[exerciseId].value as string, 10);
     //parsInt(value as (추론하라고 알려줄 타입), 진법)
 
+    if (weight <= 0) {
+      alert("무게는 0kg 이상 입력해야 합니다.");
+      return;
+    } else if (reps <= 0) {
+      alert("적어도 한개는 하셔야죠.");
+      return;
+    }
+
     if (!isNaN(weight) && !isNaN(reps)) {
       dispatch(addSet(exerciseId, reps, weight));
 
       inputWeight.current[exerciseId].value = "";
-      inputReps.current[exerciseId].value = ""; // 초기화 할까 말까
+      inputReps.current[exerciseId].value = "";
     } else {
       alert("무게, 횟수 모두 입력해 주세요");
     }
@@ -71,6 +79,7 @@ export const Functions = () => {
     alert("데이터가 저장되었습니다.");
   };
 
+  /**완료한 운동 체크하는 함수, 매개변수: 세트ID */
   const onToggle = (setId: number) => {
     dispatch(toggleComplete(setId));
   };

@@ -1,7 +1,7 @@
 import { ExerciseState, Exercise } from "../reducer/Reducer";
 import AddSet from "./SetList";
 import { Collapse, Button } from "antd";
-import { PlusCircleOutlined } from "@ant-design/icons";
+import { Functions } from "../helper/Functions";
 
 const { Panel } = Collapse;
 
@@ -15,15 +15,17 @@ type ExerciseItemProps = {
   inputReps: React.MutableRefObject<any[]>;
 };
 
-const ExerciseList = ({
-  exercise,
-  handleRemoveExercise,
-  inputWeight,
-  inputReps,
-  handleAddSet,
-  handleRemoveSet,
-  onToggle,
-}: ExerciseItemProps) => {
+const ExerciseList = () => {
+  const {
+    exercise,
+    handleRemoveExercise,
+    inputWeight,
+    inputReps,
+    handleAddSet,
+    handleRemoveSet,
+    onToggle,
+  }: ExerciseItemProps = Functions();
+
   return (
     <div className="mt-10 flex flex-col">
       {exercise.map((e: Exercise, index) => (
