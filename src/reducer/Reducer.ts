@@ -81,7 +81,7 @@ const ExerciseReducer = (
     /* 틀린코드 2
          return [...state].map(exercise =>  [...exercise.set].filter((set)=> set.setId !== action.payload.setId)) */
 
-    case "TOGGLE_TODO":
+    case "TOGGLE_COMPLETE":
       return state.map((exercise) => {
         return {
           ...exercise,

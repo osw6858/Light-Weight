@@ -7,7 +7,7 @@ import {
   removeExercise,
   removeSet,
   restoreData,
-  toggleTodo,
+  toggleComplete,
 } from "../action/action";
 import { ExerciseState } from "../reducer/Reducer";
 import AddExercise from "../components/AddExercise";
@@ -75,7 +75,7 @@ const ExerciseIndex = () => {
   };
 
   const onToggle = (setId: number) => {
-    dispatch(toggleTodo(setId));
+    dispatch(toggleComplete(setId));
   };
 
   useEffect(() => {

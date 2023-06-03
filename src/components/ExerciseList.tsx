@@ -26,9 +26,10 @@ const ExerciseList = ({
 }: ExerciseItemProps) => {
   return (
     <div className="mt-10 flex flex-col">
-      {exercise.map((e: Exercise) => (
+      {exercise.map((e: Exercise, index) => (
         <Collapse
-          className="m-2 bg-slate-100"
+          key={index}
+          className="m-2 bg-slate-100 text-center"
           defaultActiveKey={["1"]}
           size="large"
           expandIconPosition="end"
@@ -44,7 +45,7 @@ const ExerciseList = ({
                   운동 삭제
                 </Button>
               </div>
-              <div className=" md:flex justify-center">
+              <div className="flex flex-col sm:flex sm:flex-row md:flex md:flex-row justify-center">
                 <input
                   className="mx-2 px-4 py-2 border-b border-black text-gray-600 bg-white focus:outline-none focus:shadow-outline max-w-sm md:max-w-full"
                   placeholder="목표 무게"

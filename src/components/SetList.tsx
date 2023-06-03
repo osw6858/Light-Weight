@@ -17,8 +17,8 @@ const AddSet = ({ e, handleRemoveSet, onToggle }: SetItem) => {
           <span
             className={
               s.done
-                ? " text-sm sm:text-base md:text-lg p-1 font-bold line-through"
-                : "text-sm sm:text-base md:text-lg p-1 font-bold "
+                ? " text-base sm:text-base md:text-lg p-1 font-bold line-through"
+                : "text-base sm:text-base md:text-lg p-1 font-bold "
             }
           >
             {index + 1}세트
@@ -26,8 +26,8 @@ const AddSet = ({ e, handleRemoveSet, onToggle }: SetItem) => {
           <span
             className={
               s.done
-                ? " text-sm sm:text-base md:text-lg p-1 font-bold line-through"
-                : "text-sm sm:text-base md:text-lg p-1  "
+                ? " text-base sm:text-base md:text-lg p-1 font-bold line-through"
+                : "text-base sm:text-base md:text-lg p-1  "
             }
           >
             {s.weight}kg
@@ -35,8 +35,8 @@ const AddSet = ({ e, handleRemoveSet, onToggle }: SetItem) => {
           <span
             className={
               s.done
-                ? " text-sm sm:text-base md:text-lg p-1 font-bold line-through"
-                : "text-sm sm:text-base md:text-lg p-1  "
+                ? " text-base sm:text-base md:text-lg p-1 font-bold line-through"
+                : "text-base sm:text-base md:text-lg p-1  "
             }
           >
             {s.reps}회
