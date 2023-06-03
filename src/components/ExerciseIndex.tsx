@@ -9,9 +9,6 @@ const ExerciseIndex = () => {
   return (
     <div className=" h-screen">
       <Header />
-      <div className="border border-black text-center">
-        날씨 타임워치 들어갈 곳
-      </div>
       <div className="flex flex-col max-w-screen-sm mx-auto mt-8">
         <AddExercise />
         <ExerciseList />

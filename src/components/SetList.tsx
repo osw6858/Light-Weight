@@ -1,6 +1,5 @@
 import { Exercise } from "../reducer/Reducer";
 import { DeleteOutlined, CheckOutlined } from "@ant-design/icons";
-import React, { CSSProperties } from "react";
 
 type SetItem = {
   e: Exercise;

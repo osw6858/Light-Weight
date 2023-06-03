@@ -49,10 +49,12 @@ describe("ExerciseReducer", () => {
     const exerciseId = 0;
     const reps = 10;
     const weight = 100;
+    const done = false;
     const set: Set = {
       setId: 0,
       reps: reps,
       weight: weight,
+      done: done,
     };
     const exercise: Exercise = {
       exerciseId: exerciseId,
@@ -75,10 +77,12 @@ describe("ExerciseReducer", () => {
   test("세트 삭제 테스트", () => {
     const exerciseId = 0;
     const setId = 0;
+    const done = false;
     const set: Set = {
       setId: setId,
       reps: 10,
       weight: 100,
+      done: done,
     };
     const exercise: Exercise = {
       exerciseId: exerciseId,
