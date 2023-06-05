@@ -15,7 +15,7 @@ export const Functions = () => {
   const [newExercise, setNewExercise] = useState("");
 
   //사용자가 입력한 무게, 횟수
-  const inputWeight: React.MutableRefObject<any[]> = useRef([]); //이부분 공부 더 해야함
+  const inputWeight: React.MutableRefObject<any[]> = useRef([]);
   const inputReps: React.MutableRefObject<any[]> = useRef([]);
 
   //운동기록

@@ -1,7 +1,11 @@
 import ExerciseIndex from "./components/ExerciseIndex";
 
 const App = () => {
-  return <ExerciseIndex />;
+  return (
+    <>
+      <ExerciseIndex />
+    </>
+  );
 };
 
 export default App;

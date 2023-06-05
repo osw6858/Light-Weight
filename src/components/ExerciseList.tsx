@@ -1,7 +1,8 @@
 import { ExerciseState, Exercise } from "../reducer/Reducer";
 import AddSet from "./SetList";
-import { Collapse, Button } from "antd";
-import { Functions } from "../helper/Functions";
+import { Collapse, Button, Result } from "antd";
+import { Functions } from "../utils/Functions";
+import { SmileOutlined } from "@ant-design/icons";
 
 const { Panel } = Collapse;
 
@@ -26,17 +27,28 @@ const ExerciseList = () => {
     onToggle,
   }: ExerciseItemProps = Functions();
 
+  if (exercise.length === 0) {
+    return (
+      <div className="flex justify-center mt-4">
+        <Result
+          icon={<SmileOutlined />}
+          title="목표하는 운동을 등록해 보세요!"
+        />
+      </div>
+    );
+  }
+
   return (
-    <div className="mt-5 flex flex-col">
+    <div className="mt-5 flex flex-col  ">
       {exercise.map((e: Exercise, index) => (
         <Collapse
           key={index}
           className="m-2 bg-slate-100 text-center"
-          defaultActiveKey={["1"]}
+          defaultActiveKey={["0"]}
           size="large"
           expandIconPosition="end"
         >
-          <Panel header={e.exerciseName} key="0">
+          <Panel header={e.exerciseName} key={index}>
             <div key={e.exerciseId}>
               <div className="flex items-center justify-end mb-3">
                 <Button
