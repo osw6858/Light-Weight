@@ -14,7 +14,7 @@ const ExerciseIndex = () => {
       <Header />
       <Timer />
       <div className=" bg-white mx-auto p-4 m-5 w-4/5 h-2/3 overflow-y-auto">
-        <div className="flex flex-col max-w-screen-sm mx-auto mt-5  ">
+        <div className="flex flex-col max-w-screen-sm mx-auto mt-5 ">
           <AddExercise />
 
           <ExerciseList />
