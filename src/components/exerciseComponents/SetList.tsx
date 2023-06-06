@@ -1,4 +1,4 @@
-import { Exercise } from "../reducer/Reducer";
+import { Exercise } from "../../reducer/Reducer";
 import { DeleteOutlined, CheckOutlined } from "@ant-design/icons";
 
 type SetItem = {

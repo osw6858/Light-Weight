@@ -1,4 +1,4 @@
-import { Functions } from "../utils/Functions";
+import { Functions } from "../../utils/Functions";
 
 const Timer = () => {
   const { handleStart, handleStop, handleReset, minutes, seconds, isRunning } =

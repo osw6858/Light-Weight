@@ -1,18 +1,16 @@
-import AddExercise from "../components/AddExercise";
-import ExerciseList from "../components/ExerciseList";
-import Header from "../components/Header";
-import { Functions } from "../utils/Functions";
+import AddExercise from "./AddExercise";
+import ExerciseList from "./ExerciseList";
 
-import Timer from "./Timer";
+import { Functions } from "../../utils/Functions";
+
+import Timer from "../otherComponents/Timer";
 
 const ExerciseIndex = () => {
   const { handleSaveData } = Functions();
 
   return (
-    <div className="h-screen  bg-slate-200 overflow-y-auto">
-      <Header />
+    <>
       <Timer />
-
       <div className="flex flex-col max-w-screen-sm  mx-auto mt-5 ">
         <AddExercise />
 
@@ -26,7 +24,7 @@ const ExerciseIndex = () => {
           </button>
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
