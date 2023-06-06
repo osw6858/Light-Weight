@@ -1,8 +1,8 @@
 import { ExerciseState, Exercise } from "../reducer/Reducer";
 import AddSet from "./SetList";
-import { Collapse, Button, Result } from "antd";
+import { Collapse, Button } from "antd";
 import { Functions } from "../utils/Functions";
-import { SmileOutlined } from "@ant-design/icons";
+import CarouselComponent from "./CarouselComponent";
 
 const { Panel } = Collapse;
 
@@ -29,11 +29,8 @@ const ExerciseList = () => {
 
   if (exercise.length === 0) {
     return (
-      <div className="flex justify-center mt-4">
-        <Result
-          icon={<SmileOutlined />}
-          title="목표하는 운동을 등록해 보세요!"
-        />
+      <div className="  bg-slate-200 bottom-0 left-0 right-0">
+        <CarouselComponent />
       </div>
     );
   }

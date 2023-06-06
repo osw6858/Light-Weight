@@ -2,38 +2,38 @@ import { Carousel } from "antd";
 
 const CarouselComponent = () => {
   return (
-    <div className="w-full p-8 mx-auto opacity-0 md:opacity-100 ">
+    <div className="w-full p-8 mx-auto md:opacity-100 ">
       <Carousel autoplay>
         {/* PC 화면에서는 보임 */}
         <div>
-          <h3 className="bg-gray-100 h-40 rounded-lg text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
-            Take Your Workout to the Next Level with Our App
-            <span className="text-base font-normal mt-2">
-              Track your progress and stay motivated
+          <h3 className="bg-gray-100 h-40 rounded-lg text-xl md:text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
+            아직 등록된 운동이 없어요!
+            <span className="text-sm md:text-base font-normal mt-2">
+              어떤 운동을 하실건가요?
             </span>
           </h3>
         </div>
         <div>
-          <h3 className="bg-gray-100 h-40 rounded-lg text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
-            Get in Shape and Stay Accountable
-            <span className="text-base font-normal mt-2">
-              Set your goals and track your results with ease
+          <h3 className="bg-gray-100 h-40 rounded-lg text-xl md:text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
+            위에 입력창에 적어주세요!
+            <span className="text-sm md:text-base font-normal mt-2">
+              그리고 추가 버튼을 누르면 돼요.
             </span>
           </h3>
         </div>
         <div>
-          <h3 className="bg-gray-100 h-40 rounded-lg text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
-            Join a Community of Fitness Enthusiasts
-            <span className="text-base font-normal mt-2">
-              Join challenges, share your workouts, and get inspired
+          <h3 className="bg-gray-100 h-40 rounded-lg text-lg md:text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
+            타이머로 휴식시간을 체크하세요!
+            <span className="text-sm md:text-base font-normal mt-2">
+              '휴식' 버튼을 누르세요!
             </span>
           </h3>
         </div>
         <div>
-          <h3 className="bg-gray-100 h-40 rounded-lg text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
-            Thank you for Visite Our Page
-            <span className="text-base font-normal mt-2">
-              Make every day count with our Page
+          <h3 className="bg-gray-100 h-40 rounded-lg text-xl md:text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
+            오늘도 좋은 하루 보내세요!
+            <span className="text-sm md:text-base font-normal mt-2">
+              #오운완
             </span>
           </h3>
         </div>
