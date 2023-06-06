@@ -58,6 +58,9 @@ export const Functions = () => {
     } else if (reps <= 0) {
       alert("적어도 한개는 하셔야죠.");
       return;
+    } else if (weight > 999 || reps > 999) {
+      alert("입력제한초과! 최대무게:999kg, 최대횟수:999회");
+      return;
     }
 
     if (!isNaN(weight) && !isNaN(reps)) {

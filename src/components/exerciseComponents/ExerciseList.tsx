@@ -45,7 +45,14 @@ const ExerciseList = () => {
           size="large"
           expandIconPosition="end"
         >
-          <Panel header={e.exerciseName} key={index}>
+          <Panel
+            header={
+              <span className="text-lg md:text-xl font-semibold font-sans">
+                {e.exerciseName}
+              </span>
+            }
+            key={index}
+          >
             <div key={e.exerciseId}>
               <div className="flex items-center justify-end mb-3">
                 <Button
