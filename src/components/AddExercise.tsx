@@ -14,6 +14,7 @@ const AddExercise = () => {
   }: ExerciseInputProps = Functions();
 
   const { Search } = Input;
+
   return (
     <div className="mx-3">
       <Search

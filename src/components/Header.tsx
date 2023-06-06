@@ -14,10 +14,7 @@ const Header = () => {
           {now.toString()}
         </h2>
       </div>
-
-      <div className="">
-        <Weather />
-      </div>
+      <Weather />
     </header>
   );
 };
