@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { RootState } from "../reducer/index";
+import dayjs from "dayjs";
 import {
   addExercise,
   addSet,
@@ -12,6 +13,7 @@ import {
 import { ExerciseState } from "../reducer/Reducer";
 
 export const Functions = () => {
+  const now = dayjs().format("YYYY-MM-DD");
   const [newExercise, setNewExercise] = useState("");
 
   //사용자가 입력한 무게, 횟수
@@ -85,7 +87,12 @@ export const Functions = () => {
 
   /**기록을 로컬스토리지에 저장하는 함수 */
   const handleSaveData = () => {
+    const exerciseLogs = {
+      now: now,
+      exercise: exercise,
+    };
     localStorage.setItem("exerciseData", JSON.stringify(exercise));
+    localStorage.setItem("exerciseLog", JSON.stringify(exerciseLogs));
     alert("데이터가 저장되었습니다.");
   };
 
