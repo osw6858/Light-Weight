@@ -24,7 +24,7 @@ const Weather = () => {
     async function getWeather() {
       try {
         const res = await axios.get(WEATHER_API_URL + WEATHER_API_KEY);
-        //console.log("res", res);
+        console.log("res", res);
         const weather = res.data.weather;
         const temp = res.data.main;
         setWeather(weather);
@@ -38,7 +38,7 @@ const Weather = () => {
 
   return (
     <div>
-      {weather.map((e, index) => {
+      {weather.slice(0, 1).map((e, index) => {
         return (
           <div
             key={index}
