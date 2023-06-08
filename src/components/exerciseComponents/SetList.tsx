@@ -16,11 +16,11 @@ const AddSet = ({ e, handleRemoveSet, onToggle }: SetItem) => {
           <span
             className={
               s.done
-                ? " text-base sm:text-base md:text-lg p-1 font-bold line-through"
-                : "text-base sm:text-base md:text-lg p-1 font-bold "
+                ? " text-base sm:text-base md:text-lg p-1 font-bold text-green-600"
+                : "text-base sm:text-base md:text-lg p-1 font-bold text-gray-600"
             }
           >
-            {index + 1}세트
+            {s.done ? <span> 성공</span> : <span>{index + 1}세트</span>}
           </span>
           <span
             className={

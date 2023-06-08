@@ -22,6 +22,14 @@ const CarouselComponent = () => {
           </h3>
         </div>
         <div>
+          <h3 className="bg-gray-100 h-40 rounded-lg text-xl md:text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
+            목표세트에 도전해보세요!
+            <span className="text-sm md:text-base font-normal mt-2">
+              성공했다면 체크버튼을 눌러주세요!
+            </span>
+          </h3>
+        </div>
+        <div>
           <h3 className="bg-gray-100 h-40 rounded-lg text-lg md:text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
             타이머로 휴식시간을 체크하세요!
             <span className="text-sm md:text-base font-normal mt-2">
@@ -29,11 +37,12 @@ const CarouselComponent = () => {
             </span>
           </h3>
         </div>
+
         <div>
           <h3 className="bg-gray-100 h-40 rounded-lg text-xl md:text-2xl font-bold text-gray-500 flex flex-col justify-center items-center px-6">
             오늘도 좋은 하루 보내세요!
             <span className="text-sm md:text-base font-normal mt-2">
-              #오운완
+              #오운완🔥
             </span>
           </h3>
         </div>
