@@ -1,7 +1,7 @@
 import { ExerciseState, Exercise } from "../../reducer/Reducer";
 import AddSet from "./SetList";
 import { Collapse, Button } from "antd";
-import { Functions } from "../../utils/Functions";
+import { Functions } from "../../utils/ExerciseFunctions";
 import CarouselComponent from "../otherComponents/CarouselComponent";
 
 const { Panel } = Collapse;

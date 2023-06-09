@@ -1,5 +1,5 @@
 import { Input } from "antd";
-import { Functions } from "../../utils/Functions";
+import { Functions } from "../../utils/ExerciseFunctions";
 type ExerciseInputProps = {
   newExercise: string;
   handleNewExercise: (e: React.ChangeEvent<HTMLInputElement>) => void;

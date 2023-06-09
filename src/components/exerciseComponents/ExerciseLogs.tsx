@@ -17,6 +17,7 @@ const ExerciseLogs = () => {
   const removeLogs = () => {
     localStorage.removeItem("exerciseLog");
     setReset(true);
+    console.log(reset);
   };
 
   if (!isString(getExerciseDate)) {

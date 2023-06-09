@@ -2,20 +2,51 @@ import { Button, Modal } from "antd";
 import { useState } from "react";
 import { Checkbox } from "antd";
 import type { CheckboxChangeEvent } from "antd/es/checkbox";
+import axios from "axios";
+import { Spin } from "antd";
 
 const DietIndex = () => {
+  type Food = {
+    DESC_KOR: string;
+    NUTR_CONT1: string;
+  };
+
+  type FoodResult = Food[];
+
   const [open, setOpen] = useState(false);
-  const [search, setSearch] = useState("");
+  const [searchText, setSearchText] = useState("");
+  const [search, setSearch] = useState<FoodResult>([]);
+  const FOOD_API_URL = import.meta.env.VITE_FOOD_API_URL;
+  const foodList: Food[] = [];
 
   const handleSearchText = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearch(e.target.value);
+    setSearchText(e.target.value);
   };
 
-  const onChange = (e: CheckboxChangeEvent) => {
-    console.log(`checked = ${e.target.checked}`);
+  const hadleSearch = (search: string) => {
+    async function getFood() {
+      const res = await axios.get(FOOD_API_URL + search);
+      //console.log("res", res);
+      const food: FoodResult = res.data.I2790.row;
+      console.log(food);
+      if (food === undefined) {
+        alert("검색결과가 없습니다.");
+        return;
+      }
+      setSearch(food);
+    }
+    if (search.trim() !== "") {
+      getFood();
+    }
   };
 
-  console.log(search);
+  const onChecked = (e: Food) => {
+    //console.log(`checked = ${e.NUTR_CONT1}`);
+    foodList.push(e);
+    console.log(foodList);
+  };
+
+  //console.log(search);
 
   return (
     <main className="flex justify-center max-w-screen-sm  mx-auto mt-5 ">
@@ -36,10 +67,11 @@ const DietIndex = () => {
               className=" border border-b-black"
               onChange={(e) => handleSearchText(e)}
             ></input>
-            {[1, 2, 3, 4, 5, 6, 7, 8, 9, 10].map((e, index) => (
-              <div key={index} className="flex overflow-y-auto">
-                <Checkbox onChange={onChange}>
-                  <p>검색내용</p>
+            <button onClick={() => hadleSearch(searchText)}>검색</button>
+            {search.map((e: Food, index) => (
+              <div key={index} className="flex my-1 ">
+                <Checkbox onChange={() => onChecked(e)}>
+                  <span className=" md:text-lg">{e.DESC_KOR}</span>
                 </Checkbox>
               </div>
             ))}

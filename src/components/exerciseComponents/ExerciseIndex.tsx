@@ -1,7 +1,7 @@
 import AddExercise from "./AddExercise";
 import ExerciseList from "./ExerciseList";
 
-import { Functions } from "../../utils/Functions";
+import { Functions } from "../../utils/ExerciseFunctions";
 import { Popover } from "antd";
 import Timer from "../otherComponents/Timer";
 
