@@ -1,83 +1,78 @@
-import { Button, Modal } from "antd";
 import { useState } from "react";
-import { Checkbox } from "antd";
-import type { CheckboxChangeEvent } from "antd/es/checkbox";
+import { List, Input, Result, Spin } from "antd";
+import { QuestionCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { Spin } from "antd";
 
 const DietIndex = () => {
-  type Food = {
+  type FoodType = {
     DESC_KOR: string;
     NUTR_CONT1: string;
   };
 
-  type FoodResult = Food[];
-
-  const [open, setOpen] = useState(false);
-  const [searchText, setSearchText] = useState("");
-  const [search, setSearch] = useState<FoodResult>([]);
+  type FoodResult = FoodType[];
+  const { Search } = Input;
   const FOOD_API_URL = import.meta.env.VITE_FOOD_API_URL;
-  const foodList: Food[] = [];
+  const [data, setData] = useState<FoodResult>([]);
+  const [searchText, setSearchText] = useState("");
+  const [noData, setNoData] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const handleSearchText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
   };
 
-  const hadleSearch = (search: string) => {
+  const onSearch = (search: string) => {
     async function getFood() {
+      setLoading(true); // 로딩 상태 설정
       const res = await axios.get(FOOD_API_URL + search);
-      //console.log("res", res);
-      const food: FoodResult = res.data.I2790.row;
-      console.log(food);
-      if (food === undefined) {
+      const foods: FoodResult = res.data.I2790.row;
+
+      setData(foods);
+      setLoading(false); // 로딩 상태 해제
+      setNoData(false);
+      if (foods === undefined) {
         alert("검색결과가 없습니다.");
         return;
       }
-      setSearch(food);
     }
-    if (search.trim() !== "") {
-      getFood();
-    }
+    getFood();
   };
-
-  const onChecked = (e: Food) => {
-    //console.log(`checked = ${e.NUTR_CONT1}`);
-    foodList.push(e);
-    console.log(foodList);
-  };
-
-  //console.log(search);
 
   return (
-    <main className="flex justify-center max-w-screen-sm  mx-auto mt-5 ">
-      {["아침", "점심", "저녁"].map((e: string, index) => (
-        <div className="mx-3" key={index}>
-          <Button onClick={() => setOpen(true)}>{e}식단 추가</Button>
-          <Modal
-            title="검색해 주세요"
-            className=" text-center"
-            centered
-            open={open}
-            onOk={() => setOpen(false)}
-            onCancel={() => setOpen(false)}
-            width={500}
-            okText={<span className="text-black">추가</span>}
-          >
-            <input
-              className=" border border-b-black"
-              onChange={(e) => handleSearchText(e)}
-            ></input>
-            <button onClick={() => hadleSearch(searchText)}>검색</button>
-            {search.map((e: Food, index) => (
-              <div key={index} className="flex my-1 ">
-                <Checkbox onChange={() => onChecked(e)}>
-                  <span className=" md:text-lg">{e.DESC_KOR}</span>
-                </Checkbox>
-              </div>
-            ))}
-          </Modal>
-        </div>
-      ))}
+    <main className="flex flex-col justify-center max-w-screen-sm  mx-auto mt-5 ">
+      <div className="mx-3">
+        <Search
+          placeholder="음식 이름을 입력"
+          enterButton="검색"
+          size="large"
+          onSearch={(e) => onSearch(e)}
+          onChange={handleSearchText}
+          value={searchText}
+          className=" bg-blue-500 rounded-lg "
+        />
+      </div>
+      {noData ? (
+        <Result
+          icon={<QuestionCircleOutlined />}
+          title={<span>지금 먹고 있는 음식 영양성분 궁금하지 않으세요?</span>}
+          extra={<span>위에 검색창에 알고싶은 음식을 검색해 보세요!</span>}
+        />
+      ) : (
+        <Spin spinning={loading} size="large">
+          <List
+            itemLayout="horizontal"
+            dataSource={data}
+            renderItem={(item: FoodType, index) => (
+              <List.Item key={index}>
+                <List.Item.Meta
+                  title={item.DESC_KOR}
+                  description={item.NUTR_CONT1}
+                />
+              </List.Item>
+            )}
+          />
+        </Spin>
+      )}
     </main>
   );
 };
