@@ -10,7 +10,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route path="/Light-Weight/" element={<ExerciseIndex />} />
-        <Route path="/Lose-Weight" element={<DietIndex />} />
+        <Route path="/Light-Weight/Lose-Weight" element={<DietIndex />} />
         <Route path="/Light-Weight/Logs" element={<ExerciseLogs />} />
       </Routes>
     </div>

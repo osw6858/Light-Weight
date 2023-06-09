@@ -1,12 +1,20 @@
 import { useState } from "react";
-import { List, Input, Result, Spin } from "antd";
+import { List, Input, Result, Spin, Button } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 
 const DietIndex = () => {
   type FoodType = {
-    DESC_KOR: string;
-    NUTR_CONT1: string;
+    DESC_KOR: string; //식품이름
+    NUTR_CONT1: string; //열량
+    NUTR_CONT2: string; //탄수화물
+    NUTR_CONT3: string; //단백질
+    NUTR_CONT4: string; //지방
+    NUTR_CONT5: string; //당류
+    NUTR_CONT6: string; //나트륨
+    NUTR_CONT7: string; //콜레스트롤
+    NUTR_CONT8: string; //포화지방산
+    NUTR_CONT9: string; //트랜스지방
   };
 
   type FoodResult = FoodType[];
@@ -22,11 +30,11 @@ const DietIndex = () => {
   };
 
   const onSearch = (search: string) => {
+    setLoading(true); // 로딩 상태 설정
     async function getFood() {
-      setLoading(true); // 로딩 상태 설정
       const res = await axios.get(FOOD_API_URL + search);
       const foods: FoodResult = res.data.I2790.row;
-
+      console.log(foods);
       setData(foods);
       setLoading(false); // 로딩 상태 해제
       setNoData(false);
@@ -52,26 +60,33 @@ const DietIndex = () => {
         />
       </div>
       {noData ? (
-        <Result
-          icon={<QuestionCircleOutlined />}
-          title={<span>지금 먹고 있는 음식 영양성분 궁금하지 않으세요?</span>}
-          extra={<span>위에 검색창에 알고싶은 음식을 검색해 보세요!</span>}
-        />
-      ) : (
         <Spin spinning={loading} size="large">
-          <List
-            itemLayout="horizontal"
-            dataSource={data}
-            renderItem={(item: FoodType, index) => (
-              <List.Item key={index}>
-                <List.Item.Meta
-                  title={item.DESC_KOR}
-                  description={item.NUTR_CONT1}
-                />
-              </List.Item>
-            )}
+          <Result
+            icon={<QuestionCircleOutlined />}
+            title={<span>지금 먹고 있는 음식 영양성분 궁금하지 않으세요?</span>}
+            extra={<span>위에 검색창에 알고싶은 음식을 검색해 보세요!</span>}
           />
         </Spin>
+      ) : (
+        <div className="px-6">
+          <Spin spinning={loading} size="large">
+            <List
+              itemLayout="horizontal"
+              dataSource={data}
+              renderItem={(item: FoodType, index) => (
+                <List.Item key={index}>
+                  <List.Item.Meta
+                    title={item.DESC_KOR}
+                    description={`${item.NUTR_CONT1}kcal`}
+                  />
+                  <Button className=" hover:bg-blue-100 hover:text-white">
+                    상세정보(개발중)
+                  </Button>
+                </List.Item>
+              )}
+            />
+          </Spin>
+        </div>
       )}
     </main>
   );

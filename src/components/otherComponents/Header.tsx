@@ -30,7 +30,7 @@ const Header = () => {
           </button>
         </Link>
         /
-        <Link to="/Lose-Weight">
+        <Link to="/Light-Weight/Lose-Weight">
           <button className="mx-3 font-semibold text-base md:text-lg text-slate-600 hover:text-red-400">
             영양
           </button>
