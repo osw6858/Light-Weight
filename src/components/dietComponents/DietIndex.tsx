@@ -2,22 +2,24 @@ import { useState } from "react";
 import { List, Input, Result, Spin, Button } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+export type FoodType = {
+  DESC_KOR: string; //식품이름
+  NUTR_CONT1: string; //열량
+  NUTR_CONT2: string; //탄수화물
+  NUTR_CONT3: string; //단백질
+  NUTR_CONT4: string; //지방
+  NUTR_CONT5: string; //당류
+  NUTR_CONT6: string; //나트륨
+  NUTR_CONT7: string; //콜레스트롤
+  NUTR_CONT8: string; //포화지방산
+  NUTR_CONT9: string; //트랜스지방
+};
+export type FoodResult = FoodType[];
 
 const DietIndex = () => {
-  type FoodType = {
-    DESC_KOR: string; //식품이름
-    NUTR_CONT1: string; //열량
-    NUTR_CONT2: string; //탄수화물
-    NUTR_CONT3: string; //단백질
-    NUTR_CONT4: string; //지방
-    NUTR_CONT5: string; //당류
-    NUTR_CONT6: string; //나트륨
-    NUTR_CONT7: string; //콜레스트롤
-    NUTR_CONT8: string; //포화지방산
-    NUTR_CONT9: string; //트랜스지방
-  };
-
-  type FoodResult = FoodType[];
+  const navigate = useNavigate();
   const { Search } = Input;
   const FOOD_API_URL = import.meta.env.VITE_FOOD_API_URL;
   const [data, setData] = useState<FoodResult>([]);
@@ -44,6 +46,14 @@ const DietIndex = () => {
       }
     }
     getFood();
+  };
+
+  const hadleShowDtail = (item: FoodType) => {
+    navigate("/Light-Weight/Lose-Weight/detail", {
+      state: {
+        item: item,
+      },
+    });
   };
 
   return (
@@ -79,7 +89,10 @@ const DietIndex = () => {
                     title={item.DESC_KOR}
                     description={`${item.NUTR_CONT1}kcal`}
                   />
-                  <Button className=" hover:bg-blue-100 hover:text-white">
+                  <Button
+                    onClick={() => hadleShowDtail(item)}
+                    className=" hover:bg-blue-100 hover:text-white"
+                  >
                     상세정보(개발중)
                   </Button>
                 </List.Item>
