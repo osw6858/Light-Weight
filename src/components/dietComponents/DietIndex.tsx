@@ -36,7 +36,7 @@ const DietIndex = () => {
     async function getFood() {
       const res = await axios.get(FOOD_API_URL + search);
       const foods: FoodResult = res.data.I2790.row;
-      console.log(foods);
+      //  console.log(foods);
       setData(foods);
       setLoading(false); // 로딩 상태 해제
       setNoData(false);
@@ -73,8 +73,8 @@ const DietIndex = () => {
         <Spin spinning={loading} size="large">
           <Result
             icon={<QuestionCircleOutlined />}
-            title={<span>지금 먹고 있는 음식 영양성분 궁금하지 않으세요?</span>}
-            extra={<span>위에 검색창에 알고싶은 음식을 검색해 보세요!</span>}
+            title={<span>운동하려면 영양도 잘 챙기셔야죠!</span>}
+            extra={<span>검색창에 궁금한 음식정보를 검색해 보세요!</span>}
           />
         </Spin>
       ) : (
@@ -93,7 +93,7 @@ const DietIndex = () => {
                     onClick={() => hadleShowDtail(item)}
                     className=" hover:bg-blue-100 hover:text-white"
                   >
-                    상세정보(개발중)
+                    상세정보
                   </Button>
                 </List.Item>
               )}

@@ -56,8 +56,8 @@ const ExerciseLogs = () => {
         {exerciseLog.now}
       </h2>
       {exerciseLog.exercise.map((e: Exercise, index) => (
-        <Badge.Ribbon text="오운완" color="cyan">
-          <div className="bg-white rounded-lg p-4 mb-4" key={index}>
+        <Badge.Ribbon text="오운완" color="cyan" key={index}>
+          <div className="bg-white rounded-lg p-4 mb-4">
             <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center">
               {e.exerciseName}
             </h3>
