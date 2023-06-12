@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { List, Input, Result, Spin, Button, Modal } from "antd";
+import { List, Input, Result, Spin, Button, Modal, Descriptions } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
 
@@ -97,37 +97,43 @@ const DietIndex = () => {
               centered
               okType="default"
               open={modal2Open}
-              onOk={() => setModal2Open(false)}
               onCancel={() => setModal2Open(false)}
+              footer={
+                <Button key="back" onClick={() => setModal2Open(false)}>
+                  닫기
+                </Button>
+              }
             >
               <div className="flex flex-col justify-center items-center">
-                <span className=" text-base my-1">
-                  열량:{foodDtail?.NUTR_CONT1}Kcal
-                </span>
-                <span className=" text-base my-1">
-                  탄수화물:{foodDtail?.NUTR_CONT2}g
-                </span>
-                <span className=" text-base my-1">
-                  단백질:{foodDtail?.NUTR_CONT3}g
-                </span>
-                <span className=" text-base my-1">
-                  지방:{foodDtail?.NUTR_CONT4}g
-                </span>
-                <span className=" text-base my-1">
-                  당류:{foodDtail?.NUTR_CONT5}g
-                </span>
-                <span className=" text-base my-1">
-                  나트륨:{foodDtail?.NUTR_CONT6}mg
-                </span>
-                <span className=" text-base my-1">
-                  콜레스트롤:{foodDtail?.NUTR_CONT7}mg
-                </span>
-                <span className=" text-base my-1">
-                  포화지방산:{foodDtail?.NUTR_CONT8}g
-                </span>
-                <span className=" text-base my-1">
-                  트랜스지방:{foodDtail?.NUTR_CONT9}g
-                </span>
+                <Descriptions>
+                  <Descriptions.Item label="열량">
+                    {foodDtail?.NUTR_CONT1}Kcal
+                  </Descriptions.Item>
+                  <Descriptions.Item label="탄수화물">
+                    {foodDtail?.NUTR_CONT2}g
+                  </Descriptions.Item>
+                  <Descriptions.Item label="단백질">
+                    {foodDtail?.NUTR_CONT3}g
+                  </Descriptions.Item>
+                  <Descriptions.Item label="지방">
+                    {foodDtail?.NUTR_CONT4}g
+                  </Descriptions.Item>
+                  <Descriptions.Item label="당류">
+                    {foodDtail?.NUTR_CONT5}g
+                  </Descriptions.Item>
+                  <Descriptions.Item label="나트륨">
+                    {foodDtail?.NUTR_CONT6}mg
+                  </Descriptions.Item>
+                  <Descriptions.Item label="콜레스트롤">
+                    {foodDtail?.NUTR_CONT7}mg
+                  </Descriptions.Item>
+                  <Descriptions.Item label="포화지방산">
+                    {foodDtail?.NUTR_CONT8}g
+                  </Descriptions.Item>
+                  <Descriptions.Item label="트랜스지방">
+                    {foodDtail?.NUTR_CONT9}g
+                  </Descriptions.Item>
+                </Descriptions>
               </div>
             </Modal>
           </Spin>
