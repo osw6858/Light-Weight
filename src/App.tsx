@@ -2,7 +2,6 @@ import { Route, Routes } from "react-router-dom";
 import ExerciseIndex from "./components/exerciseComponents/ExerciseIndex";
 import Header from "./components/otherComponents/Header";
 import DietIndex from "./components/dietComponents/DietIndex";
-import DietDetail from "./components/dietComponents/DietDetail";
 import ExerciseLogs from "./components/exerciseComponents/ExerciseLogs";
 
 const App = () => {
@@ -13,10 +12,6 @@ const App = () => {
         <Route path="/Light-Weight/" element={<ExerciseIndex />} />
         <Route path="/Light-Weight/Lose-Weight" element={<DietIndex />} />
         <Route path="/Light-Weight/Logs" element={<ExerciseLogs />} />
-        <Route
-          path="/Light-Weight/Lose-Weight/detail"
-          element={<DietDetail />}
-        />
       </Routes>
     </div>
   );

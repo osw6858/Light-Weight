@@ -1,8 +1,7 @@
 import { useState } from "react";
-import { List, Input, Result, Spin, Button } from "antd";
+import { List, Input, Result, Spin, Button, Modal } from "antd";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 export type FoodType = {
   DESC_KOR: string; //식품이름
@@ -19,13 +18,14 @@ export type FoodType = {
 export type FoodResult = FoodType[];
 
 const DietIndex = () => {
-  const navigate = useNavigate();
   const { Search } = Input;
   const FOOD_API_URL = import.meta.env.VITE_FOOD_API_URL;
   const [data, setData] = useState<FoodResult>([]);
   const [searchText, setSearchText] = useState("");
-  const [noData, setNoData] = useState(true);
+  const [homeScreen, setHomeScreen] = useState(true);
   const [loading, setLoading] = useState(false);
+  const [foodDtail, setFoodDtail] = useState<FoodType>();
+  const [modal2Open, setModal2Open] = useState(false);
 
   const handleSearchText = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchText(e.target.value);
@@ -39,7 +39,7 @@ const DietIndex = () => {
       //  console.log(foods);
       setData(foods);
       setLoading(false); // 로딩 상태 해제
-      setNoData(false);
+      setHomeScreen(false);
       if (foods === undefined) {
         alert("검색결과가 없습니다.");
         return;
@@ -48,12 +48,9 @@ const DietIndex = () => {
     getFood();
   };
 
-  const hadleShowDtail = (item: FoodType) => {
-    navigate("/Light-Weight/Lose-Weight/detail", {
-      state: {
-        item: item,
-      },
-    });
+  const handleOpenModal = (item: FoodType) => {
+    setModal2Open(true);
+    setFoodDtail(item);
   };
 
   return (
@@ -69,7 +66,7 @@ const DietIndex = () => {
           className=" bg-blue-500 rounded-lg "
         />
       </div>
-      {noData ? (
+      {homeScreen ? (
         <Spin spinning={loading} size="large">
           <Result
             icon={<QuestionCircleOutlined />}
@@ -89,15 +86,50 @@ const DietIndex = () => {
                     title={item.DESC_KOR}
                     description={`${item.NUTR_CONT1}kcal`}
                   />
-                  <Button
-                    onClick={() => hadleShowDtail(item)}
-                    className=" hover:bg-blue-100 hover:text-white"
-                  >
+                  <Button onClick={() => handleOpenModal(item)}>
                     상세정보
                   </Button>
                 </List.Item>
               )}
             />
+            <Modal
+              title={foodDtail?.DESC_KOR}
+              centered
+              okType="default"
+              open={modal2Open}
+              onOk={() => setModal2Open(false)}
+              onCancel={() => setModal2Open(false)}
+            >
+              <div className="flex flex-col justify-center items-center">
+                <span className=" text-base my-1">
+                  열량:{foodDtail?.NUTR_CONT1}Kcal
+                </span>
+                <span className=" text-base my-1">
+                  탄수화물:{foodDtail?.NUTR_CONT2}g
+                </span>
+                <span className=" text-base my-1">
+                  단백질:{foodDtail?.NUTR_CONT3}g
+                </span>
+                <span className=" text-base my-1">
+                  지방:{foodDtail?.NUTR_CONT4}g
+                </span>
+                <span className=" text-base my-1">
+                  당류:{foodDtail?.NUTR_CONT5}g
+                </span>
+                <span className=" text-base my-1">
+                  나트륨:{foodDtail?.NUTR_CONT6}mg
+                </span>
+                <span className=" text-base my-1">
+                  콜레스트롤:{foodDtail?.NUTR_CONT7}mg
+                </span>
+                <span className=" text-base my-1">
+                  포화지방산:{foodDtail?.NUTR_CONT8}g
+                </span>
+                <span className=" text-base my-1">
+                  트랜스지방:{foodDtail?.NUTR_CONT9}g
+                </span>
+              </div>
+            </Modal>
           </Spin>
         </div>
       )}
