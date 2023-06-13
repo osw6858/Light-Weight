@@ -18,19 +18,19 @@ const Header = () => {
         <Weather />
       </header>
       <div className="flex justify-center pt-3">
-        <Link to="/Light-Weight/">
+        <Link to="/">
           <button className="mx-3 font-semibold text-base md:text-lg text-slate-600  hover:text-red-400">
             운동
           </button>
         </Link>
         /
-        <Link to="/Light-Weight/Logs">
+        <Link to="/Logs">
           <button className="mx-3 font-semibold text-base md:text-lg text-slate-600  hover:text-red-400">
             기록
           </button>
         </Link>
         /
-        <Link to="/Light-Weight/Lose-Weight">
+        <Link to="/Lose-Weight">
           <button className="mx-3 font-semibold text-base md:text-lg text-slate-600 hover:text-red-400">
             영양
           </button>
