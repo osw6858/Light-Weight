@@ -1,8 +1,8 @@
 import { ExerciseState, Exercise } from "../../reducer/Reducer";
 import AddSet from "./SetList";
 import { Collapse, Button } from "antd";
-import { Functions } from "../../utils/ExerciseFunctions";
-import CarouselComponent from "../otherComponents/CarouselComponent";
+import { Functions } from "../../utils/ExerciseFunctions.ts";
+import CarouselComponent from "../otherComponents/CarouselComponent.tsx";
 
 const { Panel } = Collapse;
 

@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
-import ExerciseIndex from "./components/exerciseComponents/ExerciseIndex";
-import Header from "./components/otherComponents/Header";
-import DietIndex from "./components/dietComponents/DietIndex";
-import ExerciseLogs from "./components/exerciseComponents/ExerciseLogs";
+import ExerciseIndex from "./components/exerciseComponents/ExerciseIndex.tsx";
+import Header from "./components/otherComponents/Header.tsx";
+import DietIndex from "./components/dietComponents/DietIndex.tsx";
+import ExerciseLogs from "./components/exerciseComponents/ExerciseLogs.tsx";
 
 const App = () => {
   return (

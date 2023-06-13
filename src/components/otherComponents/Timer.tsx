@@ -1,4 +1,4 @@
-import { Functions } from "../../utils/ExerciseFunctions";
+import { Functions } from "../../utils/ExerciseFunctions.ts";
 
 const Timer = () => {
   const { handleStart, handleStop, handleReset, minutes, seconds, isRunning } =

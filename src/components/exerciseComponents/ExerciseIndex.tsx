@@ -1,9 +1,9 @@
-import AddExercise from "./AddExercise";
-import ExerciseList from "./ExerciseList";
+import AddExercise from "./AddExercise.tsx";
+import ExerciseList from "./ExerciseList.tsx";
 
-import { Functions } from "../../utils/ExerciseFunctions";
+import { Functions } from "../../utils/ExerciseFunctions.ts";
 import { Popover } from "antd";
-import Timer from "../otherComponents/Timer";
+import Timer from "../otherComponents/Timer.tsx";
 
 const ExerciseIndex = () => {
   const { handleSaveData, handleSaveLogs } = Functions();

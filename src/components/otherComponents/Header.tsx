@@ -1,5 +1,5 @@
 import dayjs from "dayjs";
-import Weather from "./Weather";
+import Weather from "./Weather.tsx";
 import { Link } from "react-router-dom";
 const Header = () => {
   const now = dayjs().format("YYYY-MM-DD");

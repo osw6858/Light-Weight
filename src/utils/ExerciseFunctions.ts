@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { RootState } from "../reducer/index";
+import { RootState } from "../reducer/index.ts";
 import dayjs from "dayjs";
 import {
   addExercise,

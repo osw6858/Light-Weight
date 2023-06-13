@@ -1,5 +1,5 @@
 import { isString } from "antd/es/button";
-import { ExerciseState, Exercise } from "../../reducer/Reducer";
+import { ExerciseState, Exercise } from "../../reducer/Reducer.ts";
 import { useState } from "react";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Button, Result, Badge, Popconfirm } from "antd";
