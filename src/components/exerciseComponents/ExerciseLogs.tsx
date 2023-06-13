@@ -27,7 +27,7 @@ const ExerciseLogs = () => {
         <Result
           title="이런! 아직 운동기록이 없어요."
           extra={
-            <Link to="/Light-Weight/">
+            <Link to="/">
               <Button>기록하러 가기</Button>
             </Link>
           }
