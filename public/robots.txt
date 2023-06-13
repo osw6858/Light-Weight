@@ -1,0 +1,4 @@
+User-agent: *
+Allow:/
+
+Sitemap:https://light-weight.netlify.app/sitemap.xml
