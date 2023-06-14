@@ -116,8 +116,8 @@ const ExerciseList = () => {
           </button>
         </Popover>
         <Popover
-          content="주의하세요! 이전기록은 사라집니다!"
-          title="기록탭이 현재의 기록으로 바뀝니다."
+          content="기록탭에서 저장한 기록을 확인하세요."
+          title="현재 작성한 기록을 저장합니다."
           placement="bottom"
         >
           <button

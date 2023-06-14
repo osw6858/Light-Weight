@@ -1,4 +1,3 @@
-import { isString } from "antd/es/button";
 import { ExerciseState, Exercise } from "../../reducer/ExerciseReducer.ts";
 import { useState, useEffect } from "react";
 import { QuestionCircleOutlined } from "@ant-design/icons";
