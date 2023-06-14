@@ -25,11 +25,24 @@ const ExerciseLogs = () => {
     setExerciseLog(storedExerciseLog);
   }, []);
 
-  if (exerciseLog.length < 1 || exerciseLog === null) {
+  if (exerciseLog === null) {
     return (
       <div className="mt-10">
         <Result
           title="이런! 아직 운동기록이 없어요."
+          extra={
+            <Link to="/">
+              <Button>기록하러 가기</Button>
+            </Link>
+          }
+        />
+      </div>
+    );
+  } else if (exerciseLog.length < 1) {
+    return (
+      <div className="mt-10">
+        <Result
+          title="남은 운동 기록이 없어요!"
           extra={
             <Link to="/">
               <Button>기록하러 가기</Button>
