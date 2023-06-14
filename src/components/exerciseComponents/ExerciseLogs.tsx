@@ -36,7 +36,7 @@ const ExerciseLogs = () => {
     );
   } else {
     exerciseLog = JSON.parse(getExerciseDate);
-    //console.log("운동기록", exerciseLog.exercise);
+    //console.log("운동기록", exerciseLog);
   }
 
   /**총 무게 계산 알고리즘 */

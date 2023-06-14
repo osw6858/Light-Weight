@@ -89,17 +89,18 @@ export const Functions = () => {
   const handleSaveData = () => {
     localStorage.setItem("exerciseData", JSON.stringify(exercise));
 
-    alert("데이터가 저장되었습니다.");
+    alert("데이터가 임시 저장되었습니다.");
   };
 
   const handleSaveLogs = () => {
-    const exerciseLogs = {
+    const exerciseLog = {
       now: now,
       exercise: exercise,
     };
-    localStorage.setItem("exerciseLog", JSON.stringify(exerciseLogs));
+
+    localStorage.setItem("exerciseLog", JSON.stringify(exerciseLog));
     localStorage.setItem("exerciseData", JSON.stringify(exercise));
-    alert("오운완! 기록탭에서 오늘 들어올린 무게를 확인해 보세요!");
+    alert("기록탭에서 오늘 들어올린 무게를 확인해 보세요!");
   };
 
   /**완료한 운동 체크하는 함수, 매개변수: 세트ID */
