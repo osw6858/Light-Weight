@@ -121,7 +121,7 @@ export const Functions = () => {
     // exerciseId 증가
     exerciseId++;
 
-    console.log("건너가는값", exerciseLogs);
+    // console.log("건너가는값", exerciseLogs);
 
     localStorage.setItem("exerciseId", exerciseId.toString());
     localStorage.setItem("exerciseLog", JSON.stringify(exerciseLogs));

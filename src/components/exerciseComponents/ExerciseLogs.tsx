@@ -1,13 +1,11 @@
 import { isString } from "antd/es/button";
 import { ExerciseState, Exercise } from "../../reducer/ExerciseReducer.ts";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Button, Result, Badge, Popconfirm } from "antd";
 import { Link } from "react-router-dom";
 
 const ExerciseLogs = () => {
-  const [reset, setReset] = useState(false);
-
   type ExerciseLogs = [
     {
       exerciseId: number;
@@ -16,9 +14,17 @@ const ExerciseLogs = () => {
     }
   ];
 
-  const exerciseLog: ExerciseLogs = JSON.parse(
+  const storedExerciseLog = JSON.parse(
     localStorage.getItem("exerciseLog") as string
+  ) as ExerciseLogs;
+
+  const [exerciseLog, setExerciseLog] = useState<ExerciseLogs>(
+    storedExerciseLog || []
   );
+
+  useEffect(() => {
+    setExerciseLog(storedExerciseLog);
+  }, []);
 
   if (exerciseLog.length < 1 || exerciseLog === null) {
     return (
@@ -34,24 +40,23 @@ const ExerciseLogs = () => {
       </div>
     );
   }
-  console.log(exerciseLog);
+  //console.log(exerciseLog);
 
   const removeLogs = (ID: number) => {
     const updateExerciseLog = [...exerciseLog].filter(
       (e) => e.exerciseId !== ID
-    );
-    console.log(updateExerciseLog);
+    ) as ExerciseLogs;
+    // console.log(updateExerciseLog);
     localStorage.setItem("exerciseLog", JSON.stringify(updateExerciseLog));
-    setReset(true);
-    console.log(reset);
+    setExerciseLog(updateExerciseLog);
   };
 
   return (
-    <div className="flex flex-col max-w-screen-sm  mx-auto mt-5 px-3">
+    <div className="flex flex-col max-w-screen-sm  mx-auto mt-5 px-5 pb-5">
       {exerciseLog.map((i, Iindex) => (
-        <Badge.Ribbon text="오운완" color="cyan" key={Iindex}>
-          <div>
-            <h2>{i.now}</h2>
+        <div className="py-3" key={Iindex}>
+          <Badge.Ribbon text="오운완" color="cyan">
+            <h2 className=" text-xl font-bold md:text-2xl">{i.now}</h2>
             {i.exercise.map((e: Exercise, Eindex) => (
               <div className="bg-white rounded-lg p-4 mb-4" key={Eindex}>
                 <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center">
@@ -82,17 +87,21 @@ const ExerciseLogs = () => {
                 ))}
               </div>
             ))}
-            <div className="text-lg font-semibold text-gray-800 mb-4 text-center">
-              총 운동 볼륨:{" "}
-              {i.exercise.reduce((acc, e) => {
-                const setTotal = e.set.reduce((setAcc, s) => {
-                  const total = s.done ? s.reps * s.weight : 0;
-                  return setAcc + total;
-                }, 0);
-                return acc + setTotal;
-              }, 0)}
-              Kg
+            <div className=" flex  items-center justify-between">
+              <span className="text-lg font-semibold text-gray-800 mb-4 text-center">
+                {" "}
+                총 운동 볼륨:
+                {i.exercise.reduce((acc, e) => {
+                  const setTotal = e.set.reduce((setAcc, s) => {
+                    const total = s.done ? s.reps * s.weight : 0;
+                    return setAcc + total;
+                  }, 0);
+                  return acc + setTotal;
+                }, 0)}
+                Kg
+              </span>
               <Popconfirm
+                placement="bottomRight"
                 title="기록을 삭제 할까요?"
                 description="데이터는 복구할 수 없습니다."
                 icon={<QuestionCircleOutlined style={{ color: "red" }} />}
@@ -101,13 +110,13 @@ const ExerciseLogs = () => {
                 okText="네"
                 cancelText="아니오"
               >
-                <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                <button className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-400">
                   삭제
                 </button>
               </Popconfirm>
             </div>
-          </div>
-        </Badge.Ribbon>
+          </Badge.Ribbon>
+        </div>
       ))}
     </div>
   );
