@@ -1,5 +1,5 @@
 import { isString } from "antd/es/button";
-import { ExerciseState, Exercise } from "../../reducer/Reducer.ts";
+import { ExerciseState, Exercise } from "../../reducer/ExerciseReducer.ts";
 import { useState } from "react";
 import { QuestionCircleOutlined } from "@ant-design/icons";
 import { Button, Result, Badge, Popconfirm } from "antd";
@@ -8,20 +8,19 @@ import { Link } from "react-router-dom";
 const ExerciseLogs = () => {
   const [reset, setReset] = useState(false);
 
-  type ExerciseLogs = {
-    now: string;
-    exercise: ExerciseState;
-  };
-  const getExerciseDate = localStorage.getItem("exerciseLog") as string;
-  let exerciseLog: ExerciseLogs;
+  type ExerciseLogs = [
+    {
+      exerciseId: number;
+      now: string;
+      exercise: ExerciseState;
+    }
+  ];
 
-  const removeLogs = () => {
-    localStorage.removeItem("exerciseLog");
-    setReset(true);
-    console.log(reset);
-  };
+  const exerciseLog: ExerciseLogs = JSON.parse(
+    localStorage.getItem("exerciseLog") as string
+  );
 
-  if (!isString(getExerciseDate)) {
+  if (exerciseLog.length < 1 || exerciseLog === null) {
     return (
       <div className="mt-10">
         <Result
@@ -34,75 +33,82 @@ const ExerciseLogs = () => {
         />
       </div>
     );
-  } else {
-    exerciseLog = JSON.parse(getExerciseDate);
-    //console.log("운동기록", exerciseLog);
   }
+  console.log(exerciseLog);
 
-  /**총 무게 계산 알고리즘 */
-  const totalSum = exerciseLog.exercise.reduce((acc, e) => {
-    const setTotal = e.set.reduce((setAcc, s) => {
-      const total = s.done ? s.reps * s.weight : 0;
-      return setAcc + total;
-    }, 0);
-    return acc + setTotal;
-  }, 0);
-
-  //console.log(totalSum);
+  const removeLogs = (ID: number) => {
+    const updateExerciseLog = [...exerciseLog].filter(
+      (e) => e.exerciseId !== ID
+    );
+    console.log(updateExerciseLog);
+    localStorage.setItem("exerciseLog", JSON.stringify(updateExerciseLog));
+    setReset(true);
+    console.log(reset);
+  };
 
   return (
     <div className="flex flex-col max-w-screen-sm  mx-auto mt-5 px-3">
-      <h2 className="text-4xl font-semibold text-gray-800 mb-4">
-        {exerciseLog.now}
-      </h2>
-      {exerciseLog.exercise.map((e: Exercise, index) => (
-        <Badge.Ribbon text="오운완" color="cyan" key={index}>
-          <div className="bg-white rounded-lg p-4 mb-4">
-            <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center">
-              {e.exerciseName}
-            </h3>
-            {e.set.map((s, index) => (
-              <div
-                className="flex items-center justify-center mb-2"
-                key={index}
-              >
-                <span className="text-base sm:text-base md:text-lg p-1  text-gray-600 font-semibold">
-                  {index + 1}세트
-                </span>
-                <span className="text-base sm:text-base md:text-lg p-1">
-                  {s.reps}회
-                </span>
-                <span className="text-base sm:text-base md:text-lg p-1">
-                  {s.weight}Kg
-                </span>
-                <span
-                  className={`text-base sm:text-base md:text-lg p-1 ${
-                    s.done ? "text-green-500" : "text-red-500"
-                  } font-bold`}
-                >
-                  {s.done ? "성공" : "실패"}
-                </span>
+      {exerciseLog.map((i, Iindex) => (
+        <Badge.Ribbon text="오운완" color="cyan" key={Iindex}>
+          <div>
+            <h2>{i.now}</h2>
+            {i.exercise.map((e: Exercise, Eindex) => (
+              <div className="bg-white rounded-lg p-4 mb-4" key={Eindex}>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2 text-center">
+                  {e.exerciseName}
+                </h3>
+                {e.set.map((s, Sindex) => (
+                  <div
+                    className="flex items-center justify-center mb-2"
+                    key={Sindex}
+                  >
+                    <span className="text-base sm:text-base md:text-lg p-1  text-gray-600 font-semibold">
+                      {Sindex + 1}세트
+                    </span>
+                    <span className="text-base sm:text-base md:text-lg p-1">
+                      {s.reps}회
+                    </span>
+                    <span className="text-base sm:text-base md:text-lg p-1">
+                      {s.weight}Kg
+                    </span>
+                    <span
+                      className={`text-base sm:text-base md:text-lg p-1 ${
+                        s.done ? "text-green-500" : "text-red-500"
+                      } font-bold`}
+                    >
+                      {s.done ? "성공" : "실패"}
+                    </span>
+                  </div>
+                ))}
               </div>
             ))}
+            <div className="text-lg font-semibold text-gray-800 mb-4 text-center">
+              총 운동 볼륨:{" "}
+              {i.exercise.reduce((acc, e) => {
+                const setTotal = e.set.reduce((setAcc, s) => {
+                  const total = s.done ? s.reps * s.weight : 0;
+                  return setAcc + total;
+                }, 0);
+                return acc + setTotal;
+              }, 0)}
+              Kg
+              <Popconfirm
+                title="기록을 삭제 할까요?"
+                description="데이터는 복구할 수 없습니다."
+                icon={<QuestionCircleOutlined style={{ color: "red" }} />}
+                onConfirm={() => removeLogs(i.exerciseId)}
+                okType="danger"
+                okText="네"
+                cancelText="아니오"
+              >
+                <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
+                  삭제
+                </button>
+              </Popconfirm>
+            </div>
           </div>
         </Badge.Ribbon>
       ))}
-      <div className="text-lg font-semibold text-gray-800 mb-4 text-center">
-        총 운동 볼륨: {totalSum}Kg
-      </div>
-      <Popconfirm
-        title="기록을 삭제 할까요?"
-        description="데이터는 복구할 수 없습니다."
-        icon={<QuestionCircleOutlined style={{ color: "red" }} />}
-        onConfirm={removeLogs}
-        okType="danger"
-        okText="네"
-        cancelText="아니오"
-      >
-        <button className="px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600">
-          삭제
-        </button>
-      </Popconfirm>
     </div>
   );
 };

@@ -10,11 +10,12 @@ import {
   restoreData,
   toggleComplete,
 } from "../action/action";
-import { ExerciseState } from "../reducer/Reducer";
+import { ExerciseState } from "../reducer/ExerciseReducer";
 
 export const Functions = () => {
   const now = dayjs().format("YYYY-MM-DD");
   const [newExercise, setNewExercise] = useState("");
+  let exerciseId = parseInt(localStorage.getItem("exerciseId") || "0");
 
   //사용자가 입력한 무게, 횟수
   const inputWeight: React.MutableRefObject<any[]> = useRef([]);
@@ -93,13 +94,39 @@ export const Functions = () => {
   };
 
   const handleSaveLogs = () => {
-    const exerciseLog = {
-      now: now,
-      exercise: exercise,
-    };
+    const exerciseLog = JSON.parse(
+      localStorage.getItem("exerciseLog") as string
+    );
+    let exerciseLogs;
 
-    localStorage.setItem("exerciseLog", JSON.stringify(exerciseLog));
+    if (exerciseLog !== null) {
+      exerciseLogs = [
+        ...exerciseLog,
+        {
+          exerciseId: exerciseId + 1,
+          now: now,
+          exercise: exercise,
+        },
+      ];
+    } else {
+      exerciseLogs = [
+        {
+          exerciseId: exerciseId,
+          now: now,
+          exercise: exercise,
+        },
+      ];
+    }
+
+    // exerciseId 증가
+    exerciseId++;
+
+    console.log("건너가는값", exerciseLogs);
+
+    localStorage.setItem("exerciseId", exerciseId.toString());
+    localStorage.setItem("exerciseLog", JSON.stringify(exerciseLogs));
     localStorage.setItem("exerciseData", JSON.stringify(exercise));
+
     alert("기록탭에서 오늘 들어올린 무게를 확인해 보세요!");
   };
 

@@ -2,7 +2,7 @@ import ExerciseReducer, {
   ExerciseState,
   Exercise,
   Set,
-} from "../reducer/Reducer";
+} from "../reducer/ExerciseReducer";
 
 import {
   addExercise,

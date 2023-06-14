@@ -1,4 +1,4 @@
-import { ExerciseState } from "../reducer/Reducer";
+import { ExerciseState } from "../reducer/ExerciseReducer";
 
 const ADD_EXERCISE = "ADD_EXERCISE" as const;
 const REMOVE_EXERCISE = "REMOVE_EXERCISE" as const;
@@ -6,9 +6,11 @@ const ADD_SET = "ADD_SET" as const;
 const REMOVE_SET = "REMOVE_SET" as const;
 const RESTORE_DATA = "RESTORE_DATA" as const;
 const TOGGLE_COMPLETE = "TOGGLE_COMPLETE" as const;
+const SAVS_LOG = "SAVS_LOG" as const;
 
 let exerciseId = 0;
 let setId = 0;
+let dayExerciseId = 0;
 
 export const addExercise = (exerciseName: string) => ({
   type: ADD_EXERCISE,
@@ -51,6 +53,11 @@ export const restoreData = (parsedData: ExerciseState) => ({
 export const toggleComplete = (setId: number) => ({
   type: TOGGLE_COMPLETE,
   payload: setId,
+});
+
+export const saveLog = () => ({
+  type: SAVS_LOG,
+  payload: dayExerciseId++,
 });
 
 export type ActionType =
