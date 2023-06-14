@@ -26,12 +26,12 @@ const ExerciseReducer = (
   switch (action.type) {
     case "ADD_EXERCISE":
       return [
-        ...state,
         {
           exerciseId: action.payload.exerciseId,
           exerciseName: action.payload.exerciseName,
           set: [],
         },
+        ...state,
       ];
     case "REMOVE_EXERCISE":
       return [...state].filter(
