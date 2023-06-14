@@ -101,12 +101,12 @@ export const Functions = () => {
 
     if (exerciseLog !== null) {
       exerciseLogs = [
-        ...exerciseLog,
         {
           exerciseId: exerciseId + 1,
           now: now,
           exercise: exercise,
         },
+        ...exerciseLog,
       ];
     } else {
       exerciseLogs = [
