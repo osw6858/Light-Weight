@@ -1,6 +1,6 @@
 import { ExerciseState, Exercise } from "../../reducer/ExerciseReducer";
 import AddSet from "./SetList";
-import { Collapse, Button, Popover } from "antd";
+import { Collapse, Button } from "antd";
 import { Functions } from "../../utils/ExerciseFunctions.ts";
 import CarouselComponent from "../otherComponents/CarouselComponent.tsx";
 
