@@ -82,17 +82,18 @@ const ExerciseLogs = () => {
                 </span>
               }
             >
-              <div className="py-3" key={Iindex}>
+              <div className="py-3">
                 {i.exercise.reverse().map((e: Exercise, Eindex) => (
                   <Collapse
+                    key={Eindex}
                     className="m-2 bg-slate-100 text-center"
-                    size="large"
+                    size="small"
                     expandIconPosition="end"
                   >
                     <Panel
-                      key={Iindex}
+                      key={Eindex}
                       header={
-                        <span className="text-lg md:text-xl font-semibold font-sans">
+                        <span className="text-base md:text-lg font-semibold font-sans">
                           {e.exerciseName}
                         </span>
                       }
