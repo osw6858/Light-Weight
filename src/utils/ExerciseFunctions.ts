@@ -69,8 +69,8 @@ export const Functions = () => {
     if (!isNaN(weight) && !isNaN(reps)) {
       dispatch(addSet(exerciseId, reps, weight));
 
-      inputWeight.current[exerciseId].value = "";
-      inputReps.current[exerciseId].value = "";
+      //inputWeight.current[exerciseId].value = "";
+      // inputReps.current[exerciseId].value = "";
     } else {
       alert("무게, 횟수 모두 입력해 주세요");
     }
