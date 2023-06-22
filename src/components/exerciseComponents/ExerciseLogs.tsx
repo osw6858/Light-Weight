@@ -67,15 +67,15 @@ const ExerciseLogs = () => {
 
   return (
     <div className="flex flex-col max-w-screen-sm  mx-auto mt-5 px-5 pb-5">
-      {exerciseLog.map((i, Iindex) => (
-        <Badge.Ribbon text="오운완" color="cyan" key={Iindex}>
+      {exerciseLog.map((i) => (
+        <Badge.Ribbon text="오운완" color="cyan" key={i.exerciseId}>
           <Collapse
             className="m-2 bg-slate-100 text-center"
             size="large"
             expandIconPosition="end"
           >
             <Panel
-              key={Iindex}
+              key={i.exerciseId}
               header={
                 <span className="text-lg md:text-xl font-semibold font-sans">
                   {i.now}
@@ -83,26 +83,26 @@ const ExerciseLogs = () => {
               }
             >
               <div className="py-3">
-                {i.exercise.reverse().map((e: Exercise, Eindex) => (
+                {i.exercise.reverse().map((e: Exercise) => (
                   <Collapse
-                    key={Eindex}
+                    key={e.exerciseId}
                     className="m-2 bg-slate-100 text-center"
                     size="small"
                     expandIconPosition="end"
                   >
                     <Panel
-                      key={Eindex}
+                      key={e.exerciseId}
                       header={
                         <span className="text-base md:text-lg font-semibold font-sans">
                           {e.exerciseName}
                         </span>
                       }
                     >
-                      <div className="bg-white rounded-lg" key={Eindex}>
+                      <div className="bg-white rounded-lg" key={e.exerciseId}>
                         {e.set.map((s, Sindex) => (
                           <div
                             className="flex items-center justify-center mb-2"
-                            key={Sindex}
+                            key={s.setId}
                           >
                             <span className="text-base sm:text-base md:text-lg p-1  text-gray-600 font-semibold">
                               {Sindex + 1}세트

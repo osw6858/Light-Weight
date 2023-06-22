@@ -39,7 +39,7 @@ const ExerciseList = () => {
     <div className="mt-5 flex flex-col">
       {exercise.map((e: Exercise, index) => (
         <Collapse
-          key={index}
+          key={e.exerciseId}
           className="m-2 bg-slate-100 text-center"
           defaultActiveKey={["0"]}
           size="large"
